@@ -10,21 +10,12 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-<div class="collapse fixed-top" id="navbarToggleExternalContent">
-    <div class="bg-primaryColor p-4 mt-5">
-        <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <li><a href="#section3">Section 3</a></li>
-        </ul>
-    </div>
-</div>
 
 {# Include Barre de Navigation #}
 {% include 'common/nav.html.twig' %}
 
-<main>
-    {% block body %}{% endblock %}
+<main class="mt-5 py-5">
+{% block body %}{% endblock %}
 </main>
 
 {# Include Footer #}
