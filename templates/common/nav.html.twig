@@ -1,0 +1,43 @@
+{% if app.user %}
+    <div class="collapse fixed-top" id="navbarToggleExternalContent">
+        <div class="bg-primaryColor p-4 mt-5">
+            <ul>
+                <li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
+                <li><a href="#">Mon compte</a></li>
+                <li><a href="#">Changer mon mot de passe</a></li>
+                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+            </ul>
+        </div>
+    </div>
+    <nav class="navbar navbar-dark bg-primaryColor fixed-top d-flex justify-content-between align-content-center">
+        <div class="px-5">
+            <a class="navbar-brand" href="/"><img src="{{ asset('images/logo.png') }}" width="30%"></a>
+        </div>
+        <div class="px-5 d-flex align-content-center">
+            <div class="px-2">
+                <p><strong>Bienvenue {{ app.user.firstname }} </strong></p>
+            </div>
+            <div class="px-2">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+{% else %}
+    <nav class="navbar navbar-dark bg-primaryColor fixed-top d-flex justify-content-between align-content-center">
+        <div class="px-5">
+            <a class="navbar-brand" href="/"><img src="{{ asset('images/logo.png') }}" width="30%"></a>
+        </div>
+        <div class="px-5 d-flex align-content-center">
+            <div class="px-2">
+                <a href="{{ path('app_login') }}" class="btn btn-outline-light">Login</a>
+            </div>
+            <div class="px-2">
+                <a href="{{ path('app_register') }}" class="btn btn-outline-light">Inscription</a>
+            </div>
+        </div>
+    </nav>
+{% endif %}

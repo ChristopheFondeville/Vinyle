@@ -1,0 +1,127 @@
+/* Color Palette => https://coolors.co/palette/fffcf2-ccc5b9-403d39-252422-eb5e28 */
+/* Color Palette =>  https://coolors.co/47c4a6-443b86-f42861-60165d-ac143f*/
+
+:root {
+    --primaryColor: #47C4A6;
+    --secondaryColor: #443B86;
+    --thirdColor: #F42861;
+    --fourthColor: #60165D;
+    --fithColor: #FFFCF2;
+}
+.bg-primaryColor{
+    background-color: var(--primaryColor);
+}
+.bg-secondaryColor{
+    background-color: var(--secondaryColor);
+}
+.bg-thirdColor{
+    background-color: var(--thirdColor);
+}
+.bg-fourthColor{
+    background-color: var(--fourthColor);
+}
+.bg-fithColor{
+    background-color: var(--fithColor);
+}
+
+/* Parallax Sections */
+.jumbotron {
+    background-image: url("https://www.smak.co.za/images/bg.jpg");
+    background-size: 100% 100%;
+    color: #b0bec5;
+    margin-bottom: 0;
+}
+.navbar-scroll {
+    /*background-color: rgba(0,123,255,0.4);*/
+    transition: background-color 0.5s;
+}
+@media(max-width: 768px){
+    .navbar {background-color: #007bff !important; }
+}
+.parallax-container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+section.module:last-child {
+    margin-bottom: 0;
+}
+section.module h2 {
+    margin-bottom: 40px;
+    font-family: "Roboto Slab", serif;
+    font-size: 30px;
+}
+section.module p {
+    margin-bottom: 40px;
+    font-size: 16px;
+    font-weight: 300;
+}
+section.module p:last-child {
+    margin-bottom: 0;
+}
+section.module.content {
+    padding: 40px 0;
+    background-color: rgba(207,216,220,0.5);
+}
+section.module.content:last-child {
+    margin-bottom: 60px;
+}
+section.module.parallax {
+    padding: 240px 0;
+    background-position: 0 0;
+}
+section.module.parallax h1 {
+    color: #1e1e1e;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px white;
+}
+section.module.parallax-1 {
+    background-image: url("/images/slide1.jpg");
+    background-position: 50% 0;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgba(0,123,255,0.4);
+    background-blend-mode: screen;
+}
+section.module.parallax-2 {
+    background-image: url("/images/slide2.jpg");
+    background-position: 50% 0;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgba(0,123,255,0.4);
+    background-blend-mode: screen;
+}
+section.module.parallax-3 {
+    background-image: url("/images/slide3.jpg");
+    background-position: 50% 0;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgba(0,123,255,0.4);
+    background-blend-mode: screen;
+}
+
+@media all and (min-width: 600px) {
+    section.module h2 {
+        font-size: 42px;
+    }
+    section.module p {
+        font-size: 20px;
+    }
+    section.module.parallax {
+        padding: 300px 0;
+    }
+    section.module.parallax h1 {
+        font-size: 96px;
+    }
+}
+@media all and (min-width: 960px) {
+    section.module.parallax h1 {
+        font-size: 160px;
+    }
+}
