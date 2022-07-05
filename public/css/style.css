@@ -7,6 +7,8 @@
     --thirdColor: #F42861;
     --fourthColor: #60165D;
     --fithColor: #FFFCF2;
+    --sixthColor: #000000;
+    --seventhColor: #191c24;
 }
 .bg-primaryColor{
     background-color: var(--primaryColor);
@@ -23,6 +25,12 @@
 .bg-fithColor{
     background-color: var(--fithColor);
 }
+.bg-sixthColor{
+    background-color: var(--sixthColor);
+}
+.bg-seventhColor{
+     background-color: var(--seventhColor);
+ }
 
 /* Parallax Sections */
 .jumbotron {

@@ -17,20 +17,22 @@
                     </div>
                     <div class="card-body">
                         <form action="{{ path('app_login') }}" method="post">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-fill"></i></span>
                                     <input type="email" class="form-control" id="username" name="_username" placeholder="Email">
-                                </li>
-                                <li class="list-group-item">
+                                </div>
+                            <div class="input-group mb-4">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
                                     <input type="password" class="form-control" id="password" name="_password" placeholder="Mot de passe">
-                                </li>
-                                <li class="list-group-item text-center pt-4">
+                            </div>
+                            <div class="mb-4 text-center">
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                     <button class="btn btn-dark" type="submit">Connexion</button>
-                                </li>
-                            </ul>
+                            </div>
                             <div class="text-center pt-3">
-                                <p>Vous n'avez pas de compte, <a href="{{ path('app_register') }}">Enregistrez-vous!</a></p>
+                                <p class="fw-light"><a href="#">Mot de passe oublié?</a></p>
+                                <p class="fw-light">Vous n'avez pas de compte, <a href="{{ path('app_register') }}">Enregistrez-vous!</a></p>
                             </div>
                         </form>
                     </div>
@@ -38,18 +40,4 @@
             </div>
         </div>
     </div>
-    {#    <div class="my-5 py-5"> #}
-    {#        <form action="{{ path('app_login') }}" method="post"> #}
-    {#            <label for="username">Email:</label> #}
-    {#            <input type="text" id="username" name="_username" value="{{ last_username }}"/> #}
-
-    {#            <label for="password">Password:</label> #}
-    {#            <input type="password" id="password" name="_password"/> #}
-
-    {#            #}{# If you want to control the URL the user is redirected to on success #}
-    {#        <input type="hidden" name="_target_path" value="/account"/> #}
-    {#            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
-    {#            <button type="submit">login</button> #}
-    {#        </form> #}
-    {#    </div> #}
 {% endblock %}
