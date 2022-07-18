@@ -14,24 +14,22 @@
             <a class="navbar-brand" href="/"><img src="{{ asset('images/logo.png') }}" width="30%" alt="Vinyle"></a>
         </div>
         <div class="px-5 d-flex align-content-center">
-            <div class="flex-shrink-0 dropdown">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong class="text-white">Bienvenue {{ app.user.firstname }} </strong>
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">
-                    <li><a class="dropdown-item" href="{{ path('app_dashboard') }}">Dashboard</a></li>
-                    <li><a class="dropdown-item" href="#">Mon compte</a></li>
-                    <li><a class="dropdown-item" href="#">Changer mon mot de passe</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
-                </ul>
+            <div class="px-2">
+                <p><strong>Bienvenue {{ app.user.firstname }} </strong></p>
+            </div>
+            <div class="px-2">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </div>
     </nav>
 {% else %}
     <nav class="navbar navbar-dark bg-primaryColor fixed-top d-flex justify-content-between align-content-center">
         <div class="px-5">
-            <a class="navbar-brand" href="/"><img src="{{ asset('images/logo.png') }}" width="30%" alt="Logo Vinyle"></a>
+            <a class="navbar-brand" href="/"><img src="{{ asset('images/logo.png') }}" width="30%"></a>
         </div>
         <div class="px-5 d-flex align-content-center">
             <div class="px-2">
