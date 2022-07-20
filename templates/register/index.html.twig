@@ -3,13 +3,31 @@
 {% block title %}Hello RegisterController!{% endblock %}
 
 {% block body %}
-    <div class="container py-5 my-5">
-        <div class="row">
-            <div class="col-6">
-                <h1>Inscription</h1>
-                {{ form(form) }}
+    <div class="bg-img1 h-100">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card text-center">
+                        <div class="card-header bg-thirdColor py-3">
+                            <h3>Inscription</h3>
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(form) }}
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ form_row(form.firstname) }}</li>
+                                <li class="list-group-item">{{ form_row(form.lastname) }}</li>
+                                <li class="list-group-item">{{ form_row(form.email) }}</li>
+                                <li class="list-group-item">{{ form_row(form.password) }}</li>
+                            </ul>
+                            {{ form_end(form) }}
+                            {#{{ form(form) }}#}
+                        </div>
+                        <div class="card-footer text-muted bg-thirdColor py-3">
+                            Si vous avez déjà un compte, <a href="#">connectez-vous!</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 {% endblock %}

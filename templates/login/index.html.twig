@@ -7,34 +7,41 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    <div class="container mt-5 py-5">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card">
-                    <div class="text-center">
-                        <h5 class="card-header">Connexion</h5>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ path('app_login') }}" method="post">
-
+    <div class="bg-img1">
+        <div class="container mt-5 py-5">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card rounded">
+                        <div class="card-header text-center bg-thirdColor rounded-top py-3">
+                            <h5>Connexion</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ path('app_login') }}" method="post">
                                 <div class="input-group mb-4">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-fill"></i></span>
-                                    <input type="email" class="form-control" id="username" name="_username" placeholder="Email">
+                                    <input type="email" class="form-control" id="username" name="_username"
+                                           placeholder="Email">
                                 </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
-                                    <input type="password" class="form-control" id="password" name="_password" placeholder="Mot de passe">
-                            </div>
-                            <div class="mb-4 text-center">
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                                class="bi bi-key-fill"></i></span>
+                                    <input type="password" class="form-control" id="password" name="_password"
+                                           placeholder="Mot de passe">
+                                </div>
+                                <div class="mb-4 text-center">
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                     <button class="btn btn-dark" type="submit">Connexion</button>
-                            </div>
-                            <div class="text-center pt-3">
-                                <p class="fw-light"><a href="#">Mot de passe oublié?</a></p>
-                                <p class="fw-light">Vous n'avez pas de compte, <a href="{{ path('app_register') }}">Enregistrez-vous!</a></p>
-                            </div>
-                        </form>
+                                </div>
+                                <div class="text-center pt-3">
+                                    <p class="fw-light"><a href="#">Mot de passe oublié?</a></p>
+                                    <p class="fw-light">Vous n'avez pas de compte, <a href="{{ path('app_register') }}">Enregistrez-vous!</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="text-center bg-thirdColor rounded-bottom py-3">
+
+                        </div>
                     </div>
                 </div>
             </div>
