@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255)]
     private $lastname;
+
+    #[ORM\ManyToMany(targetEntity: album::class, inversedBy: 'users')]
+    private $album;
+
+    public function __construct()
+    {
+        $this->album = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, album>
+     */
+    public function getAlbum(): Collection
+    {
+        return $this->album;
+    }
+
+    public function addAlbum(album $album): self
+    {
+        if (!$this->album->contains($album)) {
+            $this->album[] = $album;
+        }
+
+        return $this;
+    }
+
+    public function removeAlbum(album $album): self
+    {
+        $this->album->removeElement($album);
 
         return $this;
     }

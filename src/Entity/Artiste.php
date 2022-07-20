@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArtisteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArtisteRepository::class)]
@@ -24,6 +26,14 @@ class Artiste
 
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private $birthday;
+
+    #[ORM\OneToMany(mappedBy: 'artist', targetEntity: Album::class)]
+    private $albums;
+
+    public function __construct()
+    {
+        $this->albums = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +84,36 @@ class Artiste
     public function setBirthday(?string $birthday): self
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Album>
+     */
+    public function getAlbums(): Collection
+    {
+        return $this->albums;
+    }
+
+    public function addAlbum(Album $album): self
+    {
+        if (!$this->albums->contains($album)) {
+            $this->albums[] = $album;
+            $album->setArtist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlbum(Album $album): self
+    {
+        if ($this->albums->removeElement($album)) {
+            // set the owning side to null (unless already changed)
+            if ($album->getArtist() === $this) {
+                $album->setArtist(null);
+            }
+        }
 
         return $this;
     }

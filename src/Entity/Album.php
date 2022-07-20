@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AlbumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
@@ -27,6 +29,20 @@ class Album
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $cover_back;
+
+    #[ORM\ManyToOne(targetEntity: artiste::class, inversedBy: 'albums')]
+    private $artist;
+
+    #[ORM\ManyToOne(targetEntity: genre::class, inversedBy: 'albums')]
+    private $genre;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'album')]
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +105,57 @@ class Album
     public function setCoverBack(?string $cover_back): self
     {
         $this->cover_back = $cover_back;
+
+        return $this;
+    }
+
+    public function getArtist(): ?artiste
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?artiste $artist): self
+    {
+        $this->artist = $artist;
+
+        return $this;
+    }
+
+    public function getGenre(): ?genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?genre $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeAlbum($this);
+        }
 
         return $this;
     }
