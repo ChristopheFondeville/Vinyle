@@ -1,0 +1,29 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}Ajouter un album{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div class="card">
+            <div class="text-center bg-thirdColor p-3 text-white rounded-top">
+                Ajouter un Vinyle
+            </div>
+            <div class="card-body">
+                {{ form_start(formAddAlbum) }}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ form_row(formAddAlbum.titre) }}</li>
+                    <li class="list-group-item">{{ form_row(formAddAlbum.tracklist) }}</li>
+                    <li class="list-group-item">{{ form_row(formAddAlbum.date) }}</li>
+                    <li class="list-group-item">{{ form_row(formAddAlbum.artist) }}</li>
+                    <li class="list-group-item">{{ form_row(formAddAlbum.genre) }}</li>
+                    <li class="list-group-item">{{ form_row(formAddAlbum.cover_front) }}</li>
+                    <li class="list-group-item">{{ form_row(formAddAlbum.cover_back) }}</li>
+                </ul>
+                <div class="text-center">{{ form_row(formAddAlbum.enregistrer) }}</div>
+                {{ form_end(formAddAlbum) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

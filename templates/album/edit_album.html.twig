@@ -1,0 +1,35 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}Modifier l'album{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card">
+                <div class="text-center bg-thirdColor p-3 text-white rounded-top">
+                    Modifier un Vinyle
+                </div>
+                <div class="card-body">
+                    {{ form_start(formEditAlbum) }}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ form_row(formEditAlbum.titre) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditAlbum.tracklist) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditAlbum.date) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditAlbum.artist) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditAlbum.genre) }}</li>
+                        <li class="list-group-item">
+                            <div><img src="{{ asset('uploads/covers/'~album.coverFront) }}" alt="{{ album.titre|capitalize }}" width="20%"> </div>
+                            {{ form_row(formEditAlbum.cover_front) }}
+                        </li>
+                        <li class="list-group-item">
+                            <div><img src="{{ asset('uploads/covers/'~album.coverBack) }}" alt="{{ album.titre|capitalize }}" width="20%"> </div>
+                            {{ form_row(formEditAlbum.cover_back) }}
+                        </li>
+                    </ul>
+                    <div class="text-center">{{ form_row(formEditAlbum.enregistrer) }}</div>
+                    {{ form_end(formEditAlbum) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
