@@ -64,14 +64,14 @@ class AddAlbumType extends AbstractType
             ])
             ->add('artist', EntityType::class, [
                 'class' => Artiste::class,
-                'choice_label' => 'name',
+                'choice_label' => 'firstname' . " " . 'lastname',
                 'label' => 'Artiste',
                 'attr' => ['placeholder' => 'Nom de l\artiste'],
                 'required' => false,
             ])
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'name',
+                'choice_label' => 'genre_name',
                 'label' => 'Genre',
                 'attr' => ['placeholder' => 'Genre'],
                 'required' => false,
