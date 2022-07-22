@@ -14,16 +14,16 @@
             <a class="navbar-brand" href="/"><img src="{{ asset('images/logo2.png') }}" width="30%" alt="Vinyle"></a>
         </div>
         <div class="px-5 d-flex align-content-center">
-            <div class="flex-shrink-0 dropdown">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong class="text-white">Bienvenue {{ app.user.firstname }} </strong>
+            <div class="dropdown">
+                <a href="#" class="link-dark text-decoration-none nav-link dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
+                    <span class="mr-2 d-none d-lg-inline small text-white">{{ app.user.firstname|capitalize }} <i class="bi bi-person-circle"></i>{#<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">#}</span>
                 </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">
-                    <li><a class="dropdown-item" href="{{ path('app_dashboard') }}">Dashboard</a></li>
-                    <li><a class="dropdown-item" href="#">Mon compte</a></li>
-                    <li><a class="dropdown-item" href="#">Changer mon mot de passe</a></li>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <li><a class="dropdown-item" href="{{ path('app_dashboard') }}"><i class="bi bi-speedometer"></i> Dashboard</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mon profil</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Paramètre</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="bi bi-door-closed"></i> Déconnexion</a></li>
                 </ul>
             </div>
         </div>
