@@ -14,6 +14,14 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AlbumController extends AbstractController
 {
+    #[Route('/album/show/{id<\d+>}', name: 'app_album_show')]
+    public function showAlbum(Album $album): Response
+    {
+        return $this->render('album/show_album.html.twig', [
+            'vinyl' => $album,
+        ]);
+    }
+
     #[Route('/album/add', name: 'app_album_add')]
     public function addAlbum(Request $request, SluggerInterface $slugger, AlbumRepository $albumRepository): Response
     {

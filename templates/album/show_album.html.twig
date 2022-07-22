@@ -1,0 +1,26 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}{{ vinyl.titre }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="text-center bg-secondaryColor p-3 text-white rounded-top">
+                    {{ vinyl.titre }}
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div>
+                <img class="rounded" src="{{ asset('uploads/covers/'~vinyl.coverFront) }}" alt="{{ vinyl.titre|capitalize }}" title="{{ vinyl.titre|capitalize }}" width="100%">
+            </div>
+            <div class="pt-2">
+                <img class="rounded" src="{{ asset('uploads/covers/'~vinyl.coverBack) }}" alt="{{ vinyl.titre|capitalize }}" title="{{ vinyl.titre|capitalize }}" width="100%">
+            </div>
+        </div>
+    </div>
+{% endblock %}
