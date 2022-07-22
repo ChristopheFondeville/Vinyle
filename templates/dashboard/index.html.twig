@@ -78,7 +78,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Total vinyle dans votre bibliothèque
+                                Total
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ vinyls|length }}</div>
                         </div>
@@ -92,13 +92,13 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
+    <div class="row h-100">
         <!-- Area Chart -->
-        <div class="col position-relative">
+        <div class="col">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Derniers vinyles ajoutés</h6>
+                <div class="p-3 d-flex flex-row align-items-center justify-content-between bg-secondaryColor rounded-top">
+                    <h6 class="m-0 font-weight-bold text-white">Derniers vinyles ajoutés</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -122,14 +122,38 @@
         <div class="col">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="p-3 d-flex flex-row align-items-center justify-content-between bg-primaryColor rounded-top">
                     <h6 class="m-0 font-weight-bold text-primary">Derniers vinyles ajoutés</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    {% for vinyl in vinyls %}
-                        <li>{{ vinyl.titre }} - {{ vinyl.date|date('Y') }}</li>
-                    {% endfor %}
+                    <ul class="list-group list-group-flush">
+                        {% for vinyl in vinyls %}
+                            {% if loop.index0 is divisible by(2) %}
+                                <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-action">
+                                    <div>
+                                        <a href="#"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}" alt="{{ vinyl.titre|capitalize }}" title="{{ vinyl.titre|capitalize }}" width="10%"></a> {{ vinyl.titre|capitalize }} - {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }} - {{ vinyl.date|date('Y') }}
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p class="mx-1"><a href="#" class="btn bg-primary text-white"><i class="bi bi-eye"></i></a></p>
+                                        <p class="mx-1"><a href="{{ path('app_album_edit', {'id': vinyl.id}) }}" class="btn bg-warning text-white"><i class="bi bi-pen"></i></a></p>
+                                        <p class="mx-1"><a href="#" class="btn bg-danger text-white"><i class="bi bi-trash"></i></a></p>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-action list-group-item-secondary">
+                                    <div>
+                                        <a href="#"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}" alt="{{ vinyl.titre|capitalize }}" title="{{ vinyl.titre|capitalize }}" width="10%"></a> {{ vinyl.titre|capitalize }} - {{ vinyl.date|date('Y') }}
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p class="mx-1"><a href="#" class="btn bg-primary text-white"><i class="bi bi-eye"></i></a></p>
+                                        <p class="mx-1"><a href="{{ path('app_album_edit', {'id': vinyl.id}) }}" class="btn bg-warning text-white"><i class="bi bi-pen"></i></a></p>
+                                        <p class="mx-1"><a href="#" class="btn bg-danger text-white"><i class="bi bi-trash"></i></a></p>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
