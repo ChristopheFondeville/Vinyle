@@ -39,6 +39,12 @@ class Album
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'album')]
     private $users;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $price;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $spotify;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -156,6 +162,30 @@ class Album
         if ($this->users->removeElement($user)) {
             $user->removeAlbum($this);
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getSpotify(): ?string
+    {
+        return $this->spotify;
+    }
+
+    public function setSpotify(?string $spotify): self
+    {
+        $this->spotify = $spotify;
 
         return $this;
     }

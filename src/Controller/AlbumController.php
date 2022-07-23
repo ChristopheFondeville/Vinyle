@@ -14,6 +14,14 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AlbumController extends AbstractController
 {
+    #[Route('/album/show/{id<\d+>}', name: 'app_album_show')]
+    public function showAlbum(Album $album): Response
+    {
+        return $this->render('album/show_album.html.twig', [
+            'vinyl' => $album,
+        ]);
+    }
+
     #[Route('/album/add', name: 'app_album_add')]
     public function addAlbum(Request $request, SluggerInterface $slugger, AlbumRepository $albumRepository): Response
     {
@@ -26,20 +34,31 @@ class AlbumController extends AbstractController
             $coverFront = $formAddAlbum->get('cover_front')->getData();
             $coverBack = $formAddAlbum->get('cover_back')->getData();
 
-
             if ($coverFront) {
-                $originalPictureName = pathinfo($coverFront->getClientOriginalName(), PATHINFO_FILENAME);
-                $safePictureName = $slugger->slug($originalPictureName);
-                $newPictureName = $safePictureName . '-' . uniqid() . '.' . $coverFront->guessExtension();
 
-                try {
-                    $coverFront->move(
-                        $this->getParameter('cover_directory'),
+                $originalPictureName = pathinfo($coverFront->getClientOriginalName(), PATHINFO_FILENAME);
+
+                //$safePictureName = $slugger->slug($originalPictureName);
+                //$newPictureName = $safePictureName . '-' . uniqid() . '.' . $coverFront->guessExtension();
+                $newPictureName = uniqid() . '.' . $coverFront->guessExtension();
+
+                // Calcul des nouvelles dimensions
+                list($width, $height) = getimagesize($coverFront);
+                $new_width = '500';
+                $new_height = '200';
+
+                // Redimensionnement
+                $image_p = imagecreatetruecolor($new_width, $new_height);
+                $image = imagecreatefromjpeg($coverFront);
+                imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+               /* try {
+                    $coverFront->move($this->getParameter('cover_directory'),
                         $newPictureName
                     );
                 } catch (FileException $e) {
                     echo 'Exception reçue : ', $e->getMessage(), "\n";
-                }
+                }*/
 
                 $newAlbum->setCoverFront($newPictureName);
             }
@@ -61,7 +80,7 @@ class AlbumController extends AbstractController
                 $newAlbum->setCoverBack($newPictureName);
             }
 
-            $albumRepository->add($newAlbum, true);
+            /*$albumRepository->add($newAlbum, true);*/
             $this->addFlash('success', 'Restaurant ajouté');
 
             return $this->redirectToRoute('app_dashboard');
@@ -72,10 +91,10 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/album/edit/{id<\d+>}', name: 'app_album_edit')]
-    public function editAlbum(Album $album,
-                              Request $request,
+    public function editAlbum(Album            $album,
+                              Request          $request,
                               SluggerInterface $slugger,
-                              AlbumRepository $albumRepository
+                              AlbumRepository  $albumRepository
     ): Response
     {
         $formEditAlbum = $this->createForm(AddAlbumType::class, $album);

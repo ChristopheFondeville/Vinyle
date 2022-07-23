@@ -36,7 +36,7 @@ $(document).ready(function(){
     })
 })
 
-//itunes carousel
+/* ---------  itunes carousel ---------- */
 /* Create an array to hold the different image positions */
 var itemPositions = [];
 var numberOfItems = $('#scroller .item').length;
@@ -83,10 +83,10 @@ $(document).ready(function() {
     /* Hover behaviours */
     $('#scroller').hover(function() {
         window.clearInterval(autoScroll);
-        $('.nav').stop(true, true).fadeIn(200);
+        $('.navItunesCarousel').stop(true, true).fadeIn(200);
     }, function() {
         autoScroll = window.setInterval("scroll('next')", 4000);
-        $('.nav').stop(true, true).fadeOut(200);
+        $('.navItunesCarousel').stop(true, true).fadeOut(200);
     });
 
     /* Click behaviours */

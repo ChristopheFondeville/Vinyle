@@ -92,38 +92,30 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row h-100">
+    <div class="row">
         <!-- Area Chart -->
         <div class="col">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="p-3 d-flex flex-row align-items-center justify-content-between bg-secondaryColor rounded-top">
-                    <h6 class="m-0 font-weight-bold text-white">Derniers vinyles ajoutés</h6>
+            <div id="scroller">
+                <div class="navItunesCarousel">
+                    <a class="prev">&laquo;</a>
+                    <a class="next">&raquo;</a>
                 </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div id="scroller">
-                        <div class="nav">
-                            <a class="prev">&laquo;</a>
-                            <a class="next">&raquo;</a>
-                        </div>
-                        {% for vinyl in vinyls %}
-                            <a href="#" class="item"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}"
-                                                          alt="{{ vinyl.titre|capitalize }}"
-                                                          title="{{ vinyl.titre|capitalize }}"></a>
-                        {% endfor %}
-                    </div>
-                </div>
+                {% for vinyl in vinyls %}
+                    <a href="{{ path('app_album_show', {'id': vinyl.id}) }}" class="item"><img
+                                src="{{ asset('uploads/covers/'~vinyl.coverFront) }}"
+                                alt="{{ vinyl.titre|capitalize }}"
+                                title="{{ vinyl.titre|capitalize }}"></a>
+                {% endfor %}
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 100px">
         <!-- Area Chart -->
         <div class="col">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="p-3 d-flex flex-row align-items-center justify-content-between bg-primaryColor rounded-top">
-                    <h6 class="m-0 font-weight-bold text-primary">Derniers vinyles ajoutés</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Les 5 derniers vinyles ajoutés</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -132,23 +124,43 @@
                             {% if loop.index0 is divisible by(2) %}
                                 <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-action">
                                     <div>
-                                        <a href="#"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}" alt="{{ vinyl.titre|capitalize }}" title="{{ vinyl.titre|capitalize }}" width="10%"> {{ vinyl.titre|capitalize }} - {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }} - {{ vinyl.date|date('Y') }}</a>
+                                        <a href="{{ path('app_album_show', {'id':vinyl.id}) }}"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}"
+                                                         alt="{{ vinyl.titre|capitalize }}"
+                                                         title="{{ vinyl.titre|capitalize }}"
+                                                         width="10%"></a> <a href="{{ path('app_album_show', {'id':vinyl.id}) }}" class="link-secondary">{{ vinyl.titre|capitalize }}
+                                            - {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}
+                                            - {{ vinyl.date|date('Y') }}</a>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
-                                        <p class="mx-1"><a href="#" class="btn bg-primary text-white"><i class="bi bi-eye"></i></a></p>
-                                        <p class="mx-1"><a href="{{ path('app_album_edit', {'id': vinyl.id}) }}" class="btn bg-warning text-white"><i class="bi bi-pen"></i></a></p>
-                                        <p class="mx-1"><a href="#" class="btn bg-danger text-white"><i class="bi bi-trash"></i></a></p>
+                                        {#<p class="mx-1"><a href="{{ path('app_album_show', {'id': vinyl.id}) }}"
+                                                           class="btn bg-primary text-white"><i
+                                                        class="bi bi-eye"></i></a></p>#}
+                                        <p class="mx-1"><a href="{{ path('app_album_edit', {'id': vinyl.id}) }}"
+                                                           class="btn bg-warning text-white"><i
+                                                        class="bi bi-pen"></i></a></p>
+                                        <p class="mx-1"><a href="#" class="btn bg-danger text-white"><i
+                                                        class="bi bi-trash"></i></a></p>
                                     </div>
                                 </li>
                             {% else %}
                                 <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-action list-group-item-secondary">
                                     <div>
-                                        <a href="#"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}" alt="{{ vinyl.titre|capitalize }}" title="{{ vinyl.titre|capitalize }}" width="10%"> {{ vinyl.titre|capitalize }} - {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }} - {{ vinyl.date|date('Y') }}</a>
+                                        <a href="{{ path('app_album_show', {'id':vinyl.id}) }}"><img src="{{ asset('uploads/covers/'~vinyl.coverFront) }}"
+                                                         alt="{{ vinyl.titre|capitalize }}"
+                                                         title="{{ vinyl.titre|capitalize }}"
+                                                         width="10%"></a> <a href="{{ path('app_album_show', {'id':vinyl.id}) }}" class="link-secondary">{{ vinyl.titre|capitalize }}
+                                            - {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}
+                                            - {{ vinyl.date|date('Y') }}</a>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
-                                        <p class="mx-1"><a href="#" class="btn bg-primary text-white"><i class="bi bi-eye"></i></a></p>
-                                        <p class="mx-1"><a href="{{ path('app_album_edit', {'id': vinyl.id}) }}" class="btn bg-warning text-white"><i class="bi bi-pen"></i></a></p>
-                                        <p class="mx-1"><a href="#" class="btn bg-danger text-white"><i class="bi bi-trash"></i></a></p>
+                                        {#<p class="mx-1"><a href="{{ path('app_album_show', {'id': vinyl.id}) }}"
+                                                           class="btn bg-primary text-white"><i
+                                                        class="bi bi-eye"></i></a></p>#}
+                                        <p class="mx-1"><a href="{{ path('app_album_edit', {'id': vinyl.id}) }}"
+                                                           class="btn bg-warning text-white"><i
+                                                        class="bi bi-pen"></i></a></p>
+                                        <p class="mx-1"><a href="#" class="btn bg-danger text-white"><i
+                                                        class="bi bi-trash"></i></a></p>
                                     </div>
                                 </li>
                             {% endif %}

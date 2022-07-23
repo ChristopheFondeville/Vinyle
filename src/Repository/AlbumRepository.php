@@ -39,6 +39,18 @@ class AlbumRepository extends ServiceEntityRepository
         }
     }
 
+    public function lastFiveRegistered(): array
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select('a')
+            ->orderBy('a.date')
+            ->setMaxResults(5);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 //    /**
 //     * @return Album[] Returns an array of Album objects
 //     */
