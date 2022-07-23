@@ -20,7 +20,7 @@
 
         <!-- Sidebar - Brand -->
             <div class="bg-thirdColor py-3 text-center">
-                <img src="{{ asset('images/logo2.png') }}" width="40%">
+                <a href="{{ path('app_home') }}"> <img src="{{ asset('images/logo2.png') }}" width="40%"></a>
             </div>
 
         <!-- Divider -->
@@ -45,7 +45,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ path('app_album_add') }}">
                 <i class="bi bi-plus-circle-fill"></i>
-                <span>Ajouter</span>
+                <span>Ajouter un vinyle</span>
             </a>
         </li>
         <li class="nav-item">
@@ -253,7 +253,12 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2021</span>
+                    <ul class="nav list-unstyled d-flex justify-content-center">
+                        <li class="text-center text-muted">© 2022 Vinyle, Developed by Christophe F.</li>
+                        <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/in/christophefondeville/" target="_blank"><i class="bi bi-linkedin"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="https://github.com/ChristopheFondeville" target="_blank"><i class="bi bi-github"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="https://twitter.com/Christophe_Fon" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                    </ul>
                 </div>
             </div>
         </footer>

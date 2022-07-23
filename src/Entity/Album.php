@@ -42,6 +42,9 @@ class Album
     #[ORM\Column(type: 'integer', nullable: true)]
     private $price;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $spotify;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -171,6 +174,18 @@ class Album
     public function setPrice(?int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getSpotify(): ?string
+    {
+        return $this->spotify;
+    }
+
+    public function setSpotify(?string $spotify): self
+    {
+        $this->spotify = $spotify;
 
         return $this;
     }
