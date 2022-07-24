@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Album;
 use App\Entity\Artiste;
 use App\Entity\Genre;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -25,9 +26,8 @@ class AddAlbumType extends AbstractType
                 'required' => true,
                 'attr' => ['placeholder' => 'Titre de l\'album'],
             ])
-            ->add('tracklist', TextareaType::class,[
+            ->add('tracklist',CKEditorType::class,[
                 'label' => 'Liste des chansons',
-                'attr' => ['placeholder' => 'Liste des chansons'],
             ])
             ->add('date')
             ->add('cover_front', FileType::class, [
@@ -75,6 +75,9 @@ class AddAlbumType extends AbstractType
                 'label' => 'Genre',
                 'attr' => ['placeholder' => 'Genre'],
                 'required' => true,
+            ])
+            ->add('spotify', TextareaType::class,[
+                'label' => 'Code Spotify',
             ])
             ->add('enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']

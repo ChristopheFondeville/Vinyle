@@ -23,7 +23,7 @@
                                 <li class="list-group-item">Date: {{ vinyl.date|date('Y') }}</li>
                             </ul>
                         </div>
-                        <p>{{ vinyl.tracklist|nl2br }}</p>
+                        <p>{{ vinyl.tracklist|raw }}</p>
                     </div>
                     {% if vinyl.spotify %}
                         <div class="card">
