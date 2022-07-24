@@ -90,7 +90,10 @@ class AddAlbumType extends AbstractType
                     'rows' => '5',
                 ],
             ])
-            /*->add('price', IntegerType::class)*/
+            ->add('price', IntegerType::class,[
+                'required' => false,
+                'label' => 'Prix d\'achat',
+            ])
             ->add('enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
             ])
