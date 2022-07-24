@@ -38,27 +38,17 @@ class AlbumController extends AbstractController
 
                 $originalPictureName = pathinfo($coverFront->getClientOriginalName(), PATHINFO_FILENAME);
 
-                //$safePictureName = $slugger->slug($originalPictureName);
-                //$newPictureName = $safePictureName . '-' . uniqid() . '.' . $coverFront->guessExtension();
+                $safePictureName = $slugger->slug($originalPictureName);
+                $newPictureName = $safePictureName . '-' . uniqid() . '.' . $coverFront->guessExtension();
                 $newPictureName = uniqid() . '.' . $coverFront->guessExtension();
 
-                // Calcul des nouvelles dimensions
-                list($width, $height) = getimagesize($coverFront);
-                $new_width = '500';
-                $new_height = '200';
-
-                // Redimensionnement
-                $image_p = imagecreatetruecolor($new_width, $new_height);
-                $image = imagecreatefromjpeg($coverFront);
-                imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-
-               /* try {
+                try {
                     $coverFront->move($this->getParameter('cover_directory'),
                         $newPictureName
                     );
                 } catch (FileException $e) {
                     echo 'Exception reçue : ', $e->getMessage(), "\n";
-                }*/
+                }
 
                 $newAlbum->setCoverFront($newPictureName);
             }
@@ -80,7 +70,7 @@ class AlbumController extends AbstractController
                 $newAlbum->setCoverBack($newPictureName);
             }
 
-            /*$albumRepository->add($newAlbum, true);*/
+            $albumRepository->add($newAlbum, true);
             $this->addFlash('success', 'Restaurant ajouté');
 
             return $this->redirectToRoute('app_dashboard');
