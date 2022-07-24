@@ -43,7 +43,7 @@ class AlbumRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a')
-            ->orderBy('a.date')
+            ->orderBy('a.date_added', 'ASC')
             ->setMaxResults(5);
 
         $query = $qb->getQuery();
