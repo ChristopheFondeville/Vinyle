@@ -8,6 +8,7 @@ use App\Entity\Genre;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,14 +23,19 @@ class AddAlbumType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, [
-                'label' => 'Nom du restaurant',
+                'label' => 'Titre de l\'album',
                 'required' => true,
                 'attr' => ['placeholder' => 'Titre de l\'album'],
             ])
             ->add('tracklist',CKEditorType::class,[
                 'label' => 'Liste des chansons',
             ])
-            ->add('date')
+            ->add('date', DateType::class,[
+                'format' => 'dd MM yyyy',
+                'placeholder' => [
+                    'day' => 'Jour', 'month' => 'Mois', 'year' => "Année"
+                ]
+            ])
             ->add('cover_front', FileType::class, [
                 'mapped' => false,
                 'label' => 'Image cover Front (jpg/jpeg/png - max : 4M)',
