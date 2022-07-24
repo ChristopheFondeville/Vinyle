@@ -71,7 +71,7 @@ class AlbumController extends AbstractController
             }
 
             $albumRepository->add($newAlbum, true);
-            $this->addFlash('success', 'Restaurant ajouté');
+            $this->addFlash('success', 'Album ajouté');
 
             return $this->redirectToRoute('app_dashboard');
         }
@@ -81,14 +81,64 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/album/edit/{id<\d+>}', name: 'app_album_edit')]
-    public function editAlbum(Album            $album,
-                              Request          $request,
+    public function editAlbum(Album $album,
+                              Request $request,
                               SluggerInterface $slugger,
-                              AlbumRepository  $albumRepository
+                              AlbumRepository $albumRepository
     ): Response
     {
         $formEditAlbum = $this->createForm(AddAlbumType::class, $album);
         $formEditAlbum->handleRequest($request);
+
+        if ($formEditAlbum->isSubmitted() && $formEditAlbum->isValid()) {
+            $coverFront = $formEditAlbum->get('cover_front')->getData();
+            $coverBack = $formEditAlbum->get('cover_back')->getData();
+
+            if ($coverFront) {
+
+                $originalPictureName = pathinfo($coverFront->getClientOriginalName(), PATHINFO_FILENAME);
+
+                $safePictureName = $slugger->slug($originalPictureName);
+                $newPictureName = $safePictureName . '-' . uniqid() . '.' . $coverFront->guessExtension();
+                $newPictureName = uniqid() . '.' . $coverFront->guessExtension();
+
+                try {
+                    $coverFront->move($this->getParameter('cover_directory'),
+                        $newPictureName
+                    );
+                } catch (FileException $e) {
+                    echo 'Exception reçue : ', $e->getMessage(), "\n";
+                }
+
+                $album->setCoverFront($newPictureName);
+            }
+
+            if ($coverBack) {
+                $originalPictureName = pathinfo($coverBack->getClientOriginalName(), PATHINFO_FILENAME);
+                $safePictureName = $slugger->slug($originalPictureName);
+                $newPictureName = $safePictureName . '-' . uniqid() . '.' . $coverBack->guessExtension();
+
+                try {
+                    $coverBack->move(
+                        $this->getParameter('cover_directory'),
+                        $newPictureName
+                    );
+                } catch (FileException $e) {
+                    echo 'Exception reçue : ', $e->getMessage(), "\n";
+                }
+
+                $album->setCoverBack($newPictureName);
+            }
+
+            $albumRepository->add($album, true);
+
+            $this->addFlash('success', 'Album modifié');
+
+            return $this->redirectToRoute('app_album_show', [
+                'id' => $album->getId(),
+            ]);
+        }
+
         return $this->renderform('album/edit_album.html.twig', [
             'album' => $album,
             'formEditAlbum' => $formEditAlbum,
