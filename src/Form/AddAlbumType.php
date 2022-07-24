@@ -77,7 +77,11 @@ class AddAlbumType extends AbstractType
                 'required' => true,
             ])
             ->add('spotify', TextareaType::class,[
+                'required' => false,
                 'label' => 'Code Spotify',
+                'attr' => [
+                    'rows' => '5',
+                ],
             ])
             ->add('enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
