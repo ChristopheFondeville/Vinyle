@@ -31,11 +31,11 @@ class Album
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $cover_back;
 
-    #[ORM\ManyToOne(targetEntity: artiste::class, inversedBy: 'albums')]
-    private string $artist;
+    #[ORM\ManyToOne(targetEntity: Artiste::class, inversedBy: 'albums')]
+    private $artist;
 
-    #[ORM\ManyToOne(targetEntity: genre::class, inversedBy: 'albums')]
-    private string $genre;
+    #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy: 'albums')]
+    private $genre;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'album')]
     private Collection $users;

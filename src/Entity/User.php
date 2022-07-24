@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $lastname;
 
-    #[ORM\ManyToMany(targetEntity: album::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Album::class, inversedBy: 'users')]
     private $album;
 
     public function __construct()
