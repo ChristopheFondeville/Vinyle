@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
@@ -13,37 +14,40 @@ class Album
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $titre;
+    private string $titre;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $tracklist;
+    private ?string $tracklist;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    private $date;
+    private ?\DateTimeInterface $date;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $cover_front;
+    private ?string $cover_front;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $cover_back;
+    private ?string $cover_back;
 
-    #[ORM\ManyToOne(targetEntity: artiste::class, inversedBy: 'albums')]
+    #[ORM\ManyToOne(targetEntity: Artiste::class, inversedBy: 'albums')]
     private $artist;
 
-    #[ORM\ManyToOne(targetEntity: genre::class, inversedBy: 'albums')]
+    #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy: 'albums')]
     private $genre;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'album')]
-    private $users;
+    private Collection $users;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $price;
+    private ?int $price;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $spotify;
+    private ?string $spotify;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date_added = null;
 
     public function __construct()
     {
@@ -186,6 +190,18 @@ class Album
     public function setSpotify(?string $spotify): self
     {
         $this->spotify = $spotify;
+
+        return $this;
+    }
+
+    public function getDateAdded(): ?\DateTimeInterface
+    {
+        return $this->date_added;
+    }
+
+    public function setDateAdded(\DateTimeInterface $date_added): self
+    {
+        $this->date_added = $date_added;
 
         return $this;
     }
