@@ -1,0 +1,59 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="text-center bg-secondaryColor p-3 text-white rounded-top">
+                    <i class="bi bi-vinyl"></i> {{ artiste.firstname|capitalize }} {{ artiste.lastname|capitalize }}
+                </div>
+                <div>
+                    <div class="d-flex flex-row p-3">
+                        <img src="{{ asset('uploads/artists/'~artiste.picture) }}"
+                             alt="{{ artiste.firstname|capitalize }}"
+                             class="img-thumbnail" title="{{ artiste.firstname|capitalize }}" width="20%">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Anniversaire: {{ artiste.birthday|date('d-m-Y') }}</li>
+                            <li class="list-group-item"><a href="{{ path('app_artiste_edit',{'id':artiste.id}) }}"
+                                                           class="btn btn-warning btn-sm"><i class="bi bi-pen"></i>
+                                    Modifier</a></li>
+                            <li class="list-group-item">{{ artiste.biography|raw }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col">
+            <div class="card">
+                <div class="text-center bg-thirdColor p-3 text-white rounded-top">
+                    <i class="bi bi-vinyl"></i> Albums de l'artiste dans la bibliothèque
+                </div>
+                <div>
+                    <ul class="list-group list-group-flush">
+                        {% for album in albumsArtist %}
+                            <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-action">
+                                <div>
+                                    <a href="{{ path('app_album_show', {'id':album.id}) }}"><img
+                                                src="{{ asset('uploads/covers/'~album.coverFront) }}"
+                                                alt="{{ album.titre|capitalize }}"
+                                                title="{{ album.titre|capitalize }}"
+                                                width="10%"></a> <a
+                                            href="{{ path('app_album_show', {'id':album.id}) }}"
+                                            class="link-secondary">{{ album.titre|capitalize }}
+                                        - {{ album.artist.firstname|capitalize }} {{ album.artist.lastname|capitalize }}
+                                        - {{ album.date|date('Y') }}</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

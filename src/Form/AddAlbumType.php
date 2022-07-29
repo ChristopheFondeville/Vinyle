@@ -8,6 +8,7 @@ use App\Entity\Genre;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -31,7 +32,7 @@ class AddAlbumType extends AbstractType
             ->add('tracklist',CKEditorType::class,[
                 'label' => 'Liste des chansons',
             ])
-            ->add('date', DateType::class,[
+            ->add('date', BirthdayType::class,[
                 'format' => 'dd MM yyyy',
                 'placeholder' => [
                     'day' => 'Jour', 'month' => 'Mois', 'year' => "Année"
