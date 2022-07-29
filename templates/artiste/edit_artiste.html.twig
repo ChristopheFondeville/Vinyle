@@ -1,0 +1,32 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center pb-4">
+        <div class="col-8">
+            <div class="card">
+                <div class="text-center bg-thirdColor p-3 text-white rounded-top">
+                    Modifier l'artiste
+                </div>
+                <div class="card-body">
+                    {{ form_start(formEditArtiste) }}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ form_row(formEditArtiste.firstname) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditArtiste.lastname) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditArtiste.birthday) }}</li>
+                        <li class="list-group-item">{{ form_row(formEditArtiste.biography) }}</li>
+                        <li class="list-group-item">
+                            <div><img src="{{ asset('uploads/artists/'~artiste.picture) }}" alt="" width="20%"> </div>
+                            {{ form_row(formEditArtiste.picture) }}
+                        </li>
+                    </ul>
+                    <div class="text-center">{{ form_row(formEditArtiste.enregistrer) }}</div>
+                    {{ form_end(formEditArtiste) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

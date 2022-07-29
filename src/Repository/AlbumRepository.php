@@ -47,7 +47,19 @@ class AlbumRepository extends ServiceEntityRepository
             ->setMaxResults(5);
 
         $query = $qb->getQuery();
+        return $query->execute();
+    }
 
+    public function albumsArtist(int $artiste): array
+    {
+        $qb = $this->createQueryBuilder('alb')
+            ->select('alb','art')
+            ->join('alb.artist','art')
+            ->where('art.artist' = $artiste)
+            ->orderBy('art.titre');
+
+
+        $query = $qb->getQuery();
         return $query->execute();
     }
 

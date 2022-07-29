@@ -19,7 +19,7 @@ class Artiste
     #[ORM\Column(type: 'string', length: 45)]
     private ?string $firstname;
 
-    #[ORM\Column(type: 'string', length: 45)]
+    #[ORM\Column(type: 'string', length: 45, nullable: true)]
     private ?string $lastname;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -80,7 +80,7 @@ class Artiste
         return $this;
     }
 
-    public function getBirthday(): ?string
+    public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }

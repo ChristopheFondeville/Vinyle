@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Artiste;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -24,7 +23,8 @@ class AddArtisteType extends AbstractType
             ])
             ->add('lastname', TextType::class,[
                 'label' => 'Nom de l\'artiste',
-                'required' => false
+                'required' => false,
+                'empty_data' => '',
             ])
             ->add('biography', TextareaType::class,[
                 'required' => true,
@@ -41,7 +41,9 @@ class AddArtisteType extends AbstractType
                 ]
             ])
             ->add('picture', FileType::class,[
-                'label' => 'Photo de l\'artiste'
+                'required' => false,
+                'label' => 'Photo de l\'artiste',
+                'mapped' => false,
             ])
             ->add('enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
