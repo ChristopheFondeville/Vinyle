@@ -18,8 +18,9 @@ class ArtisteController extends AbstractController
     #[Route('/artiste/show/{id<\d+>}', name: 'app_artist_show')]
     public function showAlbum(Artiste $artiste, AlbumRepository $albumRepository): Response
     {
-        /*$albumsArtist = $albumRepository->findAll();*/
-        $albumsArtist = $albumRepository->albumsArtist();
+        /*$albumsArtist = $albumRepository->find($artiste->getId());*/
+        $albumsArtist = $albumRepository->albumByArtist($artiste->getId());
+
         return $this->render('artiste/show_artiste.html.twig', [
             'artiste' => $artiste,
             'albumsArtist' => $albumsArtist,

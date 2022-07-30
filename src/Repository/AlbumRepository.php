@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Album;
+use App\Entity\Artiste;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -50,13 +51,13 @@ class AlbumRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function albumsArtist(int $artiste): array
+    public function albumByArtist($artist): array
     {
-        $qb = $this->createQueryBuilder('alb')
-            ->select('alb','art')
-            ->join('alb.artist','art')
-            ->where('art.artist' = $artiste)
-            ->orderBy('art.titre');
+        $qb = $this->createQueryBuilder('a')
+            ->select('a')
+            ->andWhere('a.artist = :artist')
+            ->setParameter('artist', $artist )
+            ->orderBy('a.titre');
 
 
         $query = $qb->getQuery();
