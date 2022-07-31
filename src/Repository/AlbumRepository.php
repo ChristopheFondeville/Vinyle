@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Album;
+use App\Entity\Artiste;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineExtensions\Query\Mysql\Rand;
 
 /**
  * @extends ServiceEntityRepository<Album>
@@ -41,26 +43,40 @@ class AlbumRepository extends ServiceEntityRepository
 
     public function lastFiveRegistered(): array
     {
-        $qb = $this->createQueryBuilder('a')
+        return $this->createQueryBuilder('a')
             ->select('a')
             ->orderBy('a.date_added', 'ASC')
-            ->setMaxResults(5);
-
-        $query = $qb->getQuery();
-        return $query->execute();
+            ->setMaxResults(5)
+            ->getQuery()
+            ->execute();
     }
 
-    public function albumsArtist(int $artiste): array
+    public function albumByArtist($artist): array
     {
-        $qb = $this->createQueryBuilder('alb')
-            ->select('alb','art')
-            ->join('alb.artist','art')
-            ->where('art.artist' = $artiste)
-            ->orderBy('art.titre');
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->andWhere('a.artist = :artist')
+            ->setParameter('artist', $artist)
+            ->orderBy('a.titre')
+            ->getQuery()
+            ->execute();
+    }
 
+    public function randAlbum(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('Rand()')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->execute();
+    }
 
-        $query = $qb->getQuery();
-        return $query->execute();
+    public function totalVinyls(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->getQuery()
+            ->execute();
     }
 
 //    /**
