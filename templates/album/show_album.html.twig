@@ -18,12 +18,43 @@
                                  class="img-thumbnail" title="{{ vinyl.titre|capitalize }}" width="20%">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Artiste
-                                    : <a href="{{ path('app_artist_show', {'id': vinyl.artist.id}) }}"> {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}</a></li>
+                                    :
+                                    <a href="{{ path('app_artist_show', {'id': vinyl.artist.id}) }}"> {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}</a>
+                                </li>
                                 <li class="list-group-item">Genre: {{ vinyl.genre.genreName|capitalize }}</li>
                                 <li class="list-group-item">Date: {{ vinyl.date|date('Y') }}</li>
                             </ul>
                         </div>
                         <p>{{ vinyl.tracklist|raw }}</p>
+                        {# <p><a href="{{ path('app_album_edit', {'id':vinyl.id}) }}" class="btn btn-warning">Modifier</a> <a href="{{ path('app_album_delete', {'id':vinyl.id}) }}" class="btn btn-danger">Supprimer</a></p> #}
+                        <p>
+                            <a href="{{ path('app_album_edit', {'id':vinyl.id}) }}" class="btn btn-warning">Modifier</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprimerVinyle">
+                                Supprimer
+                            </button>
+
+                            <!-- Modal -->
+                        <div class="modal fade" id="supprimerVinyle" tabindex="-1" role="dialog" aria-labelledby="modifierVinyleTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-danger text-white">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Supprimer ce vinyle?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Voulez-vous supprimer {{ vinyl.titre|capitalize }} ?? Si oui veuillez cliquer sur <span class="text-danger">"Supprimer"</span> si non cliquez sur "Fermer"
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        <a href="{{ path('app_album_delete', {'id':vinyl.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </p>
                     </div>
                     {% if vinyl.spotify %}
                         <div class="card">
