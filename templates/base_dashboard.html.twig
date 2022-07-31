@@ -19,9 +19,9 @@
     <ul class="navbar-nav bg-sixthColor sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-            <div class="bg-thirdColor py-3 text-center">
-                <a href="{{ path('app_home') }}"> <img src="{{ asset('images/logo2.png') }}" width="40%"></a>
-            </div>
+        <div class="bg-thirdColor py-3 text-center">
+            <a href="{{ path('app_home') }}"> <img src="{{ asset('images/logo2.png') }}" width="40%"></a>
+        </div>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -48,17 +48,18 @@
                 <span>Ajouter un vinyle</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{#{{ path('app_album_edit') }}#}">
+        {# <li class="nav-item">
+            <a class="nav-link collapsed" href=" #}{# {{ path('app_album_edit') }} #}{# ">
                 <i class="bi bi-pencil"></i>
                 <span>Modifier</span>
             </a>
-        </li><li class="nav-item">
-            <a class="nav-link collapsed" href="{#{{ path('app_album_delete') }}#}">
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href=" #}{# {{ path('app_album_delete') }} #}{# ">
                 <i class="bi bi-trash"></i>
                 <span>Supprimer</span>
             </a>
-        </li>
+        </li> #}
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -103,7 +104,8 @@
                 <!-- Topbar Search -->
                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
                                 <i class="bi bi-search"></i>
@@ -117,14 +119,18 @@
 
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
                         <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                             aria-labelledby="searchDropdown">
                             <form class="form-inline mr-auto w-100 navbar-search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                           placeholder="Search for..." aria-label="Search"
+                                           aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button">
                                             <i class="fas fa-search fa-sm"></i>
@@ -134,52 +140,54 @@
                             </form>
                         </div>
                     </li>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
+                    <!-- Dropdown - Alerts -->
+                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">
+                            Alerts Center
+                        </h6>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-primary">
+                                    <i class="fas fa-file-alt text-white"></i>
                                 </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">December 12, 2019</div>
+                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-success">
+                                    <i class="fas fa-donate text-white"></i>
                                 </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">December 7, 2019</div>
+                                $290.29 has been deposited into your account!
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-warning">
+                                    <i class="fas fa-exclamation-triangle text-white"></i>
                                 </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">December 2, 2019</div>
+                                Spending Alert: We've noticed unusually high spending for your account.
+                            </div>
+                        </a>
+                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                    </div>
                     </li>
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="messagesDropdown">
                             <h6 class="dropdown-header">
                                 Message Center
                             </h6>
@@ -190,7 +198,8 @@
                                 </div>
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
+                                        problem I've been having.
+                                    </div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
@@ -201,7 +210,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
+                                        would you like them sent to you?
+                                    </div>
                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </a>
@@ -212,18 +222,21 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
+                                        the progress so far, keep up the good work!
+                                    </div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                         alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div>
                                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                        told me that people say this to all dogs, even if they aren't good...
+                                    </div>
                                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </a>
@@ -237,14 +250,19 @@
 
                     <li class="nav-item dropdown no-arrow bg-thirdColor">
                         <div class="dropdown">
-                            <a href="#" class="link-dark text-decoration-none nav-link dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
-                                <span class="mr-2 d-none d-lg-inline small text-white">{{ app.user.firstname|capitalize }} <i class="bi bi-person-circle"></i>{#<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">#}</span>
+                            <a href="#" class="link-dark text-decoration-none nav-link dropdown-toggle show"
+                               data-bs-toggle="dropdown" aria-expanded="true">
+                                <span class="mr-2 d-none d-lg-inline small text-white">{{ app.user.firstname|capitalize }} <i
+                                            class="bi bi-person-circle"></i>{# <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> #}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mon profil</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Paramètre</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="bi bi-door-closed"></i> Déconnexion</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i
+                                                class="bi bi-door-closed"></i> Déconnexion</a></li>
                             </ul>
                         </div>
                     </li>
@@ -257,7 +275,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-               {% block content %}{% endblock %}
+                {% block content %}{% endblock %}
 
             </div>
             <!-- /.container-fluid -->
@@ -271,9 +289,12 @@
                 <div class="copyright text-center my-auto">
                     <ul class="nav list-unstyled d-flex justify-content-center">
                         <li class="text-center text-muted">© 2022 Vinyle, Developed by Christophe F.</li>
-                        <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/in/christophefondeville/" target="_blank"><i class="bi bi-linkedin"></i></a></li>
-                        <li class="ms-3"><a class="text-muted" href="https://github.com/ChristopheFondeville" target="_blank"><i class="bi bi-github"></i></a></li>
-                        <li class="ms-3"><a class="text-muted" href="https://twitter.com/Christophe_Fon" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/in/christophefondeville/"
+                                            target="_blank"><i class="bi bi-linkedin"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="https://github.com/ChristopheFondeville"
+                                            target="_blank"><i class="bi bi-github"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="https://twitter.com/Christophe_Fon"
+                                            target="_blank"><i class="bi bi-twitter"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -292,7 +313,8 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -310,7 +332,7 @@
     </div>
 </div>
 
-{#<!-- Bootstrap core JavaScript-->
+{# <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -325,27 +347,35 @@
 
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>#}
+<script src="js/demo/chart-pie-demo.js"></script> #}
 
 
 
 {# Include Barre de Navigation #}
-{#{% include 'common/nav.html.twig' %}#}
+{# {% include 'common/nav.html.twig' %} #}
 {#
 <main class="mt-5 py-5">
 {% block body %}{% endblock %}
-</main>#}
+</main> #}
 {#
-    #}{# Include Footer #}{#
-    {% include 'common/footer.html.twig' %}#}
-{#    </div>#}
-{#</div>#}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+#}{# Include Footer #}{#
+{% include 'common/footer.html.twig' %} #}
+{#    </div> #}
+{# </div> #}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script src="{{ asset('js/javascript.js') }}"></script>
 </body>

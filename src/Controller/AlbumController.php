@@ -145,11 +145,21 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route('/album/delete', name: 'app_album_delete')]
-    public function deleteAlbum(): Response
+    #[Route('/album/delete/{id<\d+>}', name: 'app_album_delete', methods: ['GET'])]
+    public function deleteAlbum(Album $album, AlbumRepository $albumRepository): Response
     {
-        return $this->render('album/delete_album.html.twig', [
-            'controller_name' => 'Supprimer album',
-        ]);
+        $albumRepository->remove($album,true);
+        if($album->getCoverFront()){
+            $coverFront = $this->getParameter('cover_directory').'/'.$album->getCoverFront();
+            unlink($coverFront);
+        }
+        if($album->getCoverBack()){
+            $coverBack = $this->getParameter('cover_directory').'/'.$album->getCoverBack();
+            unlink($coverBack);
+        }
+
+        $this->addFlash('success','le vinyle a bien été supprimé');
+
+        return $this->redirectToRoute('app_dashboard');
     }
 }

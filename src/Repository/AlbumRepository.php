@@ -71,13 +71,13 @@ class AlbumRepository extends ServiceEntityRepository
             ->execute();
     }
 
-    public function totalVinyls(): array
+/*    public function totalVinyls(): array
     {
         return $this->createQueryBuilder('a')
             ->select('count(a)')
             ->getQuery()
             ->execute();
-    }
+    }*/
 
 //    /**
 //     * @return Album[] Returns an array of Album objects
