@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Artiste;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use http\Env\Request;
 
 /**
  * @extends ServiceEntityRepository<Artiste>
@@ -37,6 +38,16 @@ class ArtisteRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function searchArtist($letter): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.firstname like :letter')
+            ->setParameter('letter', "$letter%")
+            ->orderBy('a.firstname')
+            ->getQuery()
+            ->getResult();
     }
 
 

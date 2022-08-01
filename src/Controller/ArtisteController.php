@@ -23,6 +23,18 @@ class ArtisteController extends AbstractController
         ]);
     }
 
+    #[Route('/artiste/list/{letter<[a-z]>}', name: 'app_artiste_letter')]
+    public function ListLetterArtist(ArtisteRepository $artisteRepository,Request $request): Response
+    {
+        $letter = $request->get('letter');
+
+        $artistes = $artisteRepository->searchArtist($letter);
+
+;        return $this->render('artiste/list_artiste.html.twig', [
+            'artistes' => $artistes,
+        ]);
+    }
+
     #[Route('/artiste/show/{id<\d+>}', name: 'app_artiste_show')]
     public function showArtist(Artiste $artiste, AlbumRepository $albumRepository): Response
     {
