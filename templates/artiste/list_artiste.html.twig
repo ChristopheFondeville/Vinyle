@@ -11,9 +11,11 @@
                 </div>
                 <div class="card-body d-flex flex-row">
                     <div>
-                        {% for letter in 'a'..'z' %}
-                            | {{ letter|capitalize }}
-                        {% endfor %}
+                        <div>
+                            {% for letter in 'a'..'z' %}
+                                | <a href="#{{ letter }}">{{ letter|capitalize }}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
