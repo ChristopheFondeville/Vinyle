@@ -19,7 +19,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Artiste
                                     :
-                                    <a href="{{ path('app_artist_show', {'id': vinyl.artist.id}) }}"> {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}</a>
+                                    <a href="{{ path('app_artiste_show', {'id': vinyl.artist.id}) }}"> {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}</a>
                                 </li>
                                 <li class="list-group-item">Genre: {{ vinyl.genre.genreName|capitalize }}</li>
                                 <li class="list-group-item">Date: {{ vinyl.date|date('Y') }}</li>

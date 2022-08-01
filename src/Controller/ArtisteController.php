@@ -15,10 +15,30 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ArtisteController extends AbstractController
 {
-    #[Route('/artiste/show/{id<\d+>}', name: 'app_artist_show')]
-    public function showAlbum(Artiste $artiste, AlbumRepository $albumRepository): Response
+    #[Route('/artiste/list', name: 'app_artiste_list')]
+    public function ListArtist(ArtisteRepository $artisteRepository): Response
     {
-        /*$albumsArtist = $albumRepository->find($artiste->getId());*/
+        return $this->render('artiste/list_artiste.html.twig', [
+            'artiste' => $artisteRepository,
+        ]);
+    }
+
+    #[Route('/artiste/list/{letter<[a-z]>}', name: 'app_artiste_letter')]
+    public function ListLetterArtist(ArtisteRepository $artisteRepository,Request $request): Response
+    {
+        $letter = $request->get('letter');
+
+        $artistes = $artisteRepository->searchArtist($letter);
+
+;        return $this->render('artiste/list_artiste.html.twig', [
+            'artistes' => $artistes,
+        ]);
+    }
+
+    #[Route('/artiste/show/{id<\d+>}', name: 'app_artiste_show')]
+    public function showArtist(Artiste $artiste, AlbumRepository $albumRepository): Response
+    {
+
         $albumsArtist = $albumRepository->albumByArtist($artiste->getId());
 
         return $this->render('artiste/show_artiste.html.twig', [
