@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AlbumRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -47,7 +48,7 @@ class Album
     private ?string $spotify;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_added = null;
+    private ?\DateTimeInterface $date_added;
 
     #[ORM\ManyToOne(inversedBy: 'albums')]
     private ?format $format = null;
@@ -55,6 +56,7 @@ class Album
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->date_added = new DateTime();
     }
 
     public function getId(): ?int
