@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Album;
 use App\Entity\Artiste;
+use App\Entity\Format;
 use App\Entity\Genre;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -82,6 +83,13 @@ class AddAlbumType extends AbstractType
                 'choice_label' => 'genre_name',
                 'label' => 'Genre',
                 'attr' => ['placeholder' => 'Genre'],
+                'required' => true,
+            ])
+            ->add('format', EntityType::class, [
+                'class' => Format::class,
+                'choice_label' => 'name',
+                'label' => 'Format',
+                'attr' => ['placeholder' => 'Format'],
                 'required' => true,
             ])
             ->add('spotify', TextareaType::class,[
