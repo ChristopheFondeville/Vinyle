@@ -49,6 +49,9 @@ class Album
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_added = null;
 
+    #[ORM\ManyToOne(inversedBy: 'albums')]
+    private ?format $format = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -202,6 +205,18 @@ class Album
     public function setDateAdded(\DateTimeInterface $date_added): self
     {
         $this->date_added = $date_added;
+
+        return $this;
+    }
+
+    public function getFormat(): ?format
+    {
+        return $this->format;
+    }
+
+    public function setFormat(?format $format): self
+    {
+        $this->format = $format;
 
         return $this;
     }
