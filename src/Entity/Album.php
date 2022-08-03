@@ -51,7 +51,7 @@ class Album
     private ?\DateTimeInterface $date_added;
 
     #[ORM\ManyToOne(inversedBy: 'albums')]
-    private ?format $format = null;
+    private ?Format $format = null;
 
     public function __construct()
     {
