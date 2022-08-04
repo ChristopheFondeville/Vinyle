@@ -70,7 +70,9 @@ class AlbumController extends AbstractController
                 $newAlbum->setCoverBack($newPictureName);
             }
 
+            $newAlbum->addUser($this->getUser());
             $albumRepository->add($newAlbum, true);
+
             $this->addFlash('success', 'Album ajouté');
 
             return $this->redirectToRoute('app_dashboard');
