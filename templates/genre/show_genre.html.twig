@@ -1,0 +1,22 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="text-center bg-secondaryColor p-3 text-white rounded-top">
+                    <i class="bi bi-card-list"></i> Liste des genres musicaux
+                </div>
+                <div>
+                    <ul class="list-group list-group-flush list-group-numbered">
+                        {% for genre in genres %}
+                        <li class="list-group-item">{{ genre.genreName|capitalize }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

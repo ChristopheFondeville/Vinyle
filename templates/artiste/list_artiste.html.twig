@@ -24,7 +24,7 @@
                             <ul class="list-group list-group-flush">
                                 {% if artistes %}
                                     {% for artiste in artistes %}
-                                        <li class="list-group-item"><img src="{{ asset('uploads/artists/'~artiste.picture) }}" alt="{{ artiste.firstname }}" class="img-thumbnail" width="5%"> <a href="{{ path('app_artiste_show', {'id':artiste.id}) }}" class="">{{ artiste.firstname }}</a></li>
+                                        <li class="list-group-item"><img src="{{ asset('uploads/artists/'~artiste.picture) }}" alt="{{ artiste.firstname }}" class="img-thumbnail" width="5%"> <a href="{{ path('app_artiste_show', {'id':artiste.id}) }}" class="">{{ artiste.firstname|capitalize }} {{ artiste.lastname|capitalize }}</a></li>
                                     {% endfor %}
                                 {% else %}
                                     <li class="list-group-item">Aucun résultat</li>
