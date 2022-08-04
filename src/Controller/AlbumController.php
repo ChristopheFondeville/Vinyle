@@ -22,6 +22,25 @@ class AlbumController extends AbstractController
         ]);
     }
 
+    #[Route('/album/list', name: 'app_album_list')]
+    public function ListArtist(AlbumRepository $albumRepository): Response
+    {
+        return $this->render('album/list_album.html.twig', [
+            'album' => $albumRepository,
+        ]);
+    }
+
+    #[Route('/album/list/{letter<[a-z]>}', name: 'app_album_letter')]
+    public function ListLetterArtist(AlbumRepository $albumRepository, Request $request): Response
+    {
+        $letter = $request->get('letter');
+
+        $albums = $albumRepository->searchAlbum($letter);;
+        return $this->render('album/list_album.html.twig', [
+            'albums' => $albums,
+        ]);
+    }
+
     #[Route('/album/add', name: 'app_album_add')]
     public function addAlbum(Request $request, SluggerInterface $slugger, AlbumRepository $albumRepository): Response
     {
@@ -83,10 +102,10 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/album/edit/{id<\d+>}', name: 'app_album_edit')]
-    public function editAlbum(Album $album,
-                              Request $request,
+    public function editAlbum(Album            $album,
+                              Request          $request,
                               SluggerInterface $slugger,
-                              AlbumRepository $albumRepository
+                              AlbumRepository  $albumRepository
     ): Response
     {
         $formEditAlbum = $this->createForm(AddAlbumType::class, $album);
@@ -150,17 +169,17 @@ class AlbumController extends AbstractController
     #[Route('/album/delete/{id<\d+>}', name: 'app_album_delete', methods: ['GET'])]
     public function deleteAlbum(Album $album, AlbumRepository $albumRepository): Response
     {
-        $albumRepository->remove($album,true);
-        if($album->getCoverFront()){
-            $coverFront = $this->getParameter('cover_directory').'/'.$album->getCoverFront();
+        $albumRepository->remove($album, true);
+        if ($album->getCoverFront()) {
+            $coverFront = $this->getParameter('cover_directory') . '/' . $album->getCoverFront();
             unlink($coverFront);
         }
-        if($album->getCoverBack()){
-            $coverBack = $this->getParameter('cover_directory').'/'.$album->getCoverBack();
+        if ($album->getCoverBack()) {
+            $coverBack = $this->getParameter('cover_directory') . '/' . $album->getCoverBack();
             unlink($coverBack);
         }
 
-        $this->addFlash('success','le vinyle a bien été supprimé');
+        $this->addFlash('success', 'le vinyle a bien été supprimé');
 
         return $this->redirectToRoute('app_dashboard');
     }

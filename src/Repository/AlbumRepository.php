@@ -71,6 +71,16 @@ class AlbumRepository extends ServiceEntityRepository
             ->execute();
     }
 
+    public function searchAlbum($letter): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.titre like :letter')
+            ->setParameter('letter', "$letter%")
+            ->orderBy('a.titre')
+            ->getQuery()
+            ->getResult();
+    }
+
 /*    public function totalVinyls(): array
     {
         return $this->createQueryBuilder('a')
