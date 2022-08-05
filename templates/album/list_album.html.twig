@@ -25,8 +25,11 @@
                                 {% if albums %}
                                     {% for album in albums %}
                                         <li class="list-group-item">
-                                            <a href="{{ path('app_album_show', {'id':album.id}) }}"
-                                               class="">{{ album.titre }}</a>
+                                            <img src="{{ asset('uploads/covers/'~album.coverFront) }}"
+                                                 alt="{{ album.titre }}" width="5%"> <a
+                                                    href="{{ path('app_album_show', {'id':album.id}) }}"
+                                                    class="">{{ album.titre }}
+                                                </a> - {{ album.artist.firstname }} {{ album.artist.lastname }}
                                         </li>
                                     {% endfor %}
                                 {% else %}
