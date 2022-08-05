@@ -35,7 +35,7 @@ class AlbumController extends AbstractController
     {
         $letter = $request->get('letter');
 
-        $albums = $albumRepository->searchAlbum($letter);;
+        $albums = $albumRepository->searchAlbum($letter, $this->getUser());;
         return $this->render('album/list_album.html.twig', [
             'albums' => $albums,
         ]);

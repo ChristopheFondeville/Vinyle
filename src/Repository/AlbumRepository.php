@@ -77,11 +77,17 @@ class AlbumRepository extends ServiceEntityRepository
             ->execute();
     }
 
-    public function searchAlbum($letter): array
+    public function searchAlbum($letter, $user): array
     {
         return $this->createQueryBuilder('a')
+            ->join('a.users', 'u')
+            ->andWhere('u.id = :user_id')
             ->andWhere('a.titre like :letter')
-            ->setParameter('letter', "$letter%")
+            ->setParameters([
+                'user_id' => $user,
+                'letter' => "$letter%",
+            ])
+            /*->setParameter('letter', "$letter%")*/
             ->orderBy('a.titre')
             ->getQuery()
             ->getResult();
