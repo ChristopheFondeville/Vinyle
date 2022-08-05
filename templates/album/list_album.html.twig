@@ -24,7 +24,7 @@
                             <ul class="list-group list-group-flush">
                                 {% if albums %}
                                     {% for album in albums %}
-                                        <li>
+                                        <li class="list-group-item">
                                             <a href="{{ path('app_album_show', {'id':album.id}) }}"
                                                class="">{{ album.titre }}</a>
                                         </li>

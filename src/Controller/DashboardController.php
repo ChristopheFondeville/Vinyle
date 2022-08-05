@@ -13,12 +13,11 @@ class DashboardController extends AbstractController
     #[Route('/dashboard', name: 'app_dashboard')]
     public function index(AlbumRepository $albumRepository, ArtisteRepository $artisteRepository): Response
     {
-
-        $lastFiveRegistered = $albumRepository->lastFiveRegistered();
-        $rand = $albumRepository->randAlbum();
+        $lastFiveRegistered = $albumRepository->lastFiveRegistered($this->getUser());
+        $rand = $albumRepository->randAlbum($this->getUser());
         $artists = $artisteRepository->findAll();
-        $vinyls = $albumRepository->findAll();
-        /*$totalVinyls = $albumRepository->totalVinyls();*/
+        /*$vinyls = $albumRepository->findAll();*/
+        $vinyls = $albumRepository->totalVinylsUser($this->getUser());
 
         return $this->render('dashboard/index.html.twig', [
             'vinyls' => $vinyls,

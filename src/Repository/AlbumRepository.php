@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Album;
-use App\Entity\Artiste;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use DoctrineExtensions\Query\Mysql\Rand;
@@ -41,10 +41,13 @@ class AlbumRepository extends ServiceEntityRepository
         }
     }
 
-    public function lastFiveRegistered(): array
+    public function lastFiveRegistered($user): array
     {
         return $this->createQueryBuilder('a')
             ->select('a')
+            ->join('a.users', 'u')
+            ->andWhere('u.id = :user_id')
+            ->setParameter('user_id', $user)
             ->orderBy('a.date_added', 'ASC')
             ->setMaxResults(5)
             ->getQuery()
@@ -62,9 +65,12 @@ class AlbumRepository extends ServiceEntityRepository
             ->execute();
     }
 
-    public function randAlbum(): array
+    public function randAlbum($user): array
     {
         return $this->createQueryBuilder('a')
+            ->join('a.users', 'u')
+            ->andWhere('u.id = :user_id')
+            ->setParameter('user_id', $user)
             ->orderBy('Rand()')
             ->setMaxResults(5)
             ->getQuery()
@@ -81,13 +87,16 @@ class AlbumRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-/*    public function totalVinyls(): array
+    public function totalVinylsUser($user): array
     {
         return $this->createQueryBuilder('a')
-            ->select('count(a)')
+            ->select('a')
+            ->join('a.users','u')
+            ->andWhere('u.id = :user_id')
+            ->setParameter('user_id', $user)
             ->getQuery()
             ->execute();
-    }*/
+    }
 
 //    /**
 //     * @return Album[] Returns an array of Album objects
