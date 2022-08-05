@@ -1,0 +1,17 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div class="card">
+            <div class="text-center bg-thirdColor p-3 text-white rounded-top">
+                <i class="bi bi-person-badge-fill"></i> Profil de {{ user.firstname|capitalize }} {{ user.lastname|capitalize }}
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
