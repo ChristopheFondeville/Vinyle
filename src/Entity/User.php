@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 45)]
     private ?string $user_name = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -55,8 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 45, nullable: true)]
     private ?string $city = null;
 
-    #[ORM\Column]
-    private ?bool $is_admin = null;
+    #[ORM\Column(type: 'boolean')]
+    private bool $is_admin = false;
 
     public function __construct()
     {

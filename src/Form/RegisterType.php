@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -27,6 +28,19 @@ class RegisterType extends AbstractType
                 'label' => 'Votre nom',
                 'attr' => [
                     'placeholder' => 'Veuillez saisir votre nom'
+                ]
+            ])
+            ->add('userName', TextType::class, [
+                'label' => 'Votre pseudo',
+                'attr' => [
+                    'placeholder' => 'Veuillez saisir votre pseudo'
+                ]
+            ])
+            ->add('birthdate', BirthdayType::class,[
+                'label' => 'Votre date d\'anniversaire',
+                'format' => 'dd MM yyyy',
+                'placeholder' => [
+                    'day' => 'Jour', 'month' => 'Mois', 'year' => "Année"
                 ]
             ])
             ->add('email', EmailType::class, [
