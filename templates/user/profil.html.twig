@@ -3,15 +3,37 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div class="card">
-            <div class="text-center bg-thirdColor p-3 text-white rounded-top">
-                <i class="bi bi-person-badge-fill"></i> Profil de {{ user.firstname|capitalize }} {{ user.lastname|capitalize }}
-            </div>
-            <div class="card-body">
+    <div class="row justify-content-center my-5">
+        <div class="col-8">
+            <div class="card">
+                <div class="text-center bg-thirdColor p-3 text-white rounded-top">
+                    <i class="bi bi-person-badge-fill"></i> Profil
+                    de {{ user.firstname|capitalize }} {{ user.lastname|capitalize }}
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center">
+                            {% if user.avatar is not null %}
+                                <img src="{{ asset('uploads/avatars/'~user.avatar) }}"
+                                     alt="{{ user.firstname|capitalize }} {{ user.lastname|capitalize }}">
+                            {% else %}
+                                <i class="bi bi-person-circle" style="font-size: 7em"></i>
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">Nom: <span class="fw-bold">{{ user.lastname|capitalize }}</span>
+                        </li>
+                        <li class="list-group-item">Prénom: <span class="fw-bold">{{ user.firstname|capitalize }}</span>
+                        </li>
+                        <li class="list-group-item">Pseudo: <span class="fw-bold">{{ user.userName|capitalize }}</span>
+                        </li>
+                        <li class="list-group-item">Date d'anniversaire: <span
+                                    class="fw-bold">{{ user.birthdate|date('d-m-Y') }}</span></li>
+                        <li class="list-group-item">Adresse: <span
+                                    class="fw-bold"><br>{{ user.adress }}<br>{{ user.zipCode }}<br>{{ user.city }}
+                        </span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
