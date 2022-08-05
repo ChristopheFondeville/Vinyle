@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Album;
-use App\Entity\Artiste;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use DoctrineExtensions\Query\Mysql\Rand;
@@ -41,10 +41,13 @@ class AlbumRepository extends ServiceEntityRepository
         }
     }
 
-    public function lastFiveRegistered(): array
+    public function lastFiveRegistered($user): array
     {
         return $this->createQueryBuilder('a')
             ->select('a')
+            ->join('a.users', 'u')
+            ->andWhere('u.id = :user_id')
+            ->setParameter('user_id', $user)
             ->orderBy('a.date_added', 'ASC')
             ->setMaxResults(5)
             ->getQuery()
@@ -62,22 +65,44 @@ class AlbumRepository extends ServiceEntityRepository
             ->execute();
     }
 
-    public function randAlbum(): array
+    public function randAlbum($user): array
     {
         return $this->createQueryBuilder('a')
+            ->join('a.users', 'u')
+            ->andWhere('u.id = :user_id')
+            ->setParameter('user_id', $user)
             ->orderBy('Rand()')
             ->setMaxResults(5)
             ->getQuery()
             ->execute();
     }
 
-/*    public function totalVinyls(): array
+    public function searchAlbum($letter, $user): array
     {
         return $this->createQueryBuilder('a')
-            ->select('count(a)')
+            ->join('a.users', 'u')
+            ->andWhere('u.id = :user_id')
+            ->andWhere('a.titre like :letter')
+            ->setParameters([
+                'user_id' => $user,
+                'letter' => "$letter%",
+            ])
+            /*->setParameter('letter', "$letter%")*/
+            ->orderBy('a.titre')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function totalVinylsUser($user): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->join('a.users','u')
+            ->andWhere('u.id = :user_id')
+            ->setParameter('user_id', $user)
             ->getQuery()
             ->execute();
-    }*/
+    }
 
 //    /**
 //     * @return Album[] Returns an array of Album objects
