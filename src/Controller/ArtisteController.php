@@ -48,7 +48,7 @@ class ArtisteController extends AbstractController
     }
 
     #[Route('/artiste/add', name: 'app_artiste_add')]
-    public function index(Request $request, SluggerInterface $slugger, ArtisteRepository $artisteRepository): Response
+    public function addArtist(Request $request, SluggerInterface $slugger, ArtisteRepository $artisteRepository): Response
     {
         $newArtiste = new Artiste();
 

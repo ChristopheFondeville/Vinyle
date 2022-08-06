@@ -1,6 +1,6 @@
 {% extends 'base_dashboard.html.twig' %}
 
-{% block title %}{{ vinyl.titre }}{% endblock %}
+{% block title %}{{ vinyl.titre }} - {{ vinyl.artist.firstname|capitalize }} {{ vinyl.artist.lastname|capitalize }}{% endblock %}
 
 {% block content %}
     <div class="row">
